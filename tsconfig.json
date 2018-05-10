@@ -22,5 +22,11 @@
   "compileOnSave": false,
   "atom": {
     "rewriteTsconfig": false
-  }
+  },
+  "angularCompilerOptions": {
+      "skipTemplateCodegen": true,
+      "skipMetadataEmit": false,
+      "strictMetadataEmit": true,
+      "annotationsAs": "decorators"
+   }
 }

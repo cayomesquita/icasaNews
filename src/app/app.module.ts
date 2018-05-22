@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, NavController } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -9,7 +9,7 @@ import { StaffPage } from './../pages/staff/staff';
 import { TeamPage } from './../pages/team/team';
 import { NewsPage } from './../pages/news/news';
 import { TabsPage } from '../pages/tabs/tabs';
-import { SignupPage } from '../pages/signup/signup';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,7 +36,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     TeamPage,
     StaffPage,
     TabsPage,
-    SignupPage,
+    LoginPage,
     UserInfoComponent
   ],
   imports: [
@@ -53,7 +53,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     TeamPage,
     StaffPage,
     TabsPage,
-    SignupPage
+    LoginPage
   ],
   providers: [
     StatusBar,

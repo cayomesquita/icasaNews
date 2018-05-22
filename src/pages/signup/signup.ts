@@ -1,15 +1,12 @@
-import { UserCredential } from '@firebase/auth-types';
-import { User } from './../../models/user.model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AngularFireList } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+import { UserCredential } from '@firebase/auth-types';
 
 import { AuthService } from './../../providers/firebase/auth.service';
 import { UserService } from './../../providers/firebase/user.service';
-import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
+
 /**
  * Generated class for the SignupPage page.
  *
@@ -17,6 +14,7 @@ import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -24,8 +22,6 @@ import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 export class SignupPage {
 
   signUpForm: FormGroup;
-
-  users: Observable<User[]>;
 
   constructor(
     public navCtrl: NavController,
@@ -44,11 +40,6 @@ export class SignupPage {
       password: ['', [Validators.required, Validators.minLength(3)]]
     });
 
-    this.users = this.userService.users.valueChanges();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
   }
 
   onSubmit(): void {
@@ -56,7 +47,7 @@ export class SignupPage {
     let formUser = this.signUpForm.value;
 
     this.authService.createAuthUser({ email: formUser.email, password: formUser.password })
-      .then((userCred:UserCredential) => {
+      .then((userCred: UserCredential) => {
 
         delete formUser.password;
 
@@ -65,9 +56,14 @@ export class SignupPage {
           .then(() => {
             console.log('Usuario cadastrado');
             loading.dismiss();
+          })
+          .catch(() => {
+            loading.dismiss();
           });
       })
-      .catch();
+      .catch(() => {
+        loading.dismiss();
+      });
 
   }
 
@@ -75,9 +71,5 @@ export class SignupPage {
     let loading: Loading = this.loadingCtrl.create({ content: 'Carregando...' });
     loading.present();
     return loading;
-  }
-
-  private clickMe(user: User): void {
-    console.log('Usuário: ', user);
   }
 }

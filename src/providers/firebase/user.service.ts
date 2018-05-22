@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { User } from '../../models/user.model';
-import { ThenableReference } from '@firebase/database-types';
 
 
 /*Generated class for the UserProvider provider.  See https://angular.io/guide/dependency-injection for more info on providers
@@ -23,7 +21,7 @@ export class UserService {
   }
 
   create(user: User): Promise<any> {
-    return this.af.object('/users/' + user.uid).set(user);
+    return this.af.object(`/users/${user.uid}`).set(user);
   }
 
 }

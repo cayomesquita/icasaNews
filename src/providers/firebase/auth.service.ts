@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
 import 'rxjs/add/operator/map';
-import { UserCredential } from '@firebase/auth-types';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import { User, UserCredential } from '@firebase/auth-types';
 
 /*
   Generated class for the AuthProvider provider.
@@ -12,12 +14,24 @@ import { UserCredential } from '@firebase/auth-types';
 @Injectable()
 export class AuthService {
 
+  user: Observable<User>;
+
   constructor(
     public auth: AngularFireAuth
-  ) { }
+  ) {
+    this.user = this.auth.authState;
+   }
 
   createAuthUser(user: { email: string, password: string }): Promise<UserCredential> {
     return this.auth.auth.createUserAndRetrieveDataWithEmailAndPassword(user.email, user.password);
+  }
+
+  login(user: { email: string, password: string }): Promise<UserCredential> {
+    return this.auth.auth.signInAndRetrieveDataWithEmailAndPassword(user.email, user.password);
+  }
+
+  logout(): Promise<any> {
+    return this.auth.auth.signOut();
   }
 
 }

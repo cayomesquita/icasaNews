@@ -4,25 +4,30 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { SignupPage } from './../pages/signup/signup';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
+
   @ViewChild(Nav) nav;
-  rootPage:any = TabsPage;
-  pages: {title:string, component:any}[];
+  rootPage: any = TabsPage;
+  pages: { title: string, component: any }[];
   menuCtrl: MenuController;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, menuCtrl: MenuController) {
+  constructor(
+    platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen,
+    menuCtrl: MenuController
+  ) {
 
     this.menuCtrl = menuCtrl;
 
     this.pages = [
-      {title:'Home', component: TabsPage},
-      {title:'Login', component: SignupPage}      
+      { title: 'Home', component: TabsPage },
+      { title: 'Login', component: LoginPage }
     ];
 
     platform.ready().then(() => {
@@ -33,7 +38,7 @@ export class MyApp {
     });
   }
 
-  openPage(page: any):void{
+  openPage(page: any): void {
     this.rootPage = page.component;
     this.menuCtrl.close();
   }

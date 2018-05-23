@@ -9,13 +9,14 @@ import { StaffPage } from './../pages/staff/staff';
 import { TeamPage } from './../pages/team/team';
 import { NewsPage } from './../pages/news/news';
 import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
+
+import { UserInfoComponent } from '../components/user-info/user-info.component';
+import { UserMenuComponent } from '../components/user-menu/user-menu.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
-import { UserInfoComponent } from '../components/user-info/user-info.component';
 
 import { UserService } from '../providers/firebase/user.service';
 import { AuthService } from '../providers/firebase/auth.service';
@@ -36,8 +37,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     TeamPage,
     StaffPage,
     TabsPage,
-    LoginPage,
-    UserInfoComponent
+    UserInfoComponent,
+    UserMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +53,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     NewsPage,
     TeamPage,
     StaffPage,
-    TabsPage,
-    LoginPage
+    TabsPage
   ],
   providers: [
     StatusBar,

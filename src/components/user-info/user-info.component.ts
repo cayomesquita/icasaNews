@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { User } from './../../models/user.model';
 
 /**
  * Generated class for the UserInfoComponent component.
@@ -12,11 +14,10 @@ import { Component } from '@angular/core';
 })
 export class UserInfoComponent {
 
-  text: string;
+  @Input() user: User;
 
   constructor() {
-    console.log('Hello UserInfoComponent Component');
-    this.text = 'Hello World';
+    console.log('Hello UserInfoComponent Component');    
   }
 
 }

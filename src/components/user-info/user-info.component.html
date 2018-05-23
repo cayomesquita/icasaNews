@@ -1,8 +1,8 @@
 <!-- Generated template for the UserInfoComponent component -->
-<div *ngIf="user" >
+<div>
   <ion-avatar>
-    <img [src]="'assets/icon/favicon.ico' || 'assets/icon/favicon.ico'">
+    <img class="round" [src]="'assets/imgs/no-photo.jpg'">
   </ion-avatar>
-  <h2 text-center>{{text}}</h2>
+  <h1 text-center *ngIf="user">{{user.name}}</h1>
   
 </div>

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { App, MenuController } from 'ionic-angular';
+import { Component, Input } from '@angular/core';
+
+import { User } from '../../models/user.model';
 
 /**
  * Generated class for the UserMenuComponent component.
@@ -12,11 +15,22 @@ import { Component } from '@angular/core';
 })
 export class UserMenuComponent {
 
-  text: string;
+  @Input('user') currentUser: User;
 
-  constructor() {
+  constructor(
+      public app: App,
+      public menuCtrl: MenuController
+  ) {
     console.log('Hello UserMenuComponent Component');
-    this.text = 'Hello World';
+  }
+
+  onLogout():void{
+    console.log(`Logout`);
+  }
+
+  onLogin():void{
+    this.app.getActiveNav().push('LoginPage');
+    this.menuCtrl.close();
   }
 
 }

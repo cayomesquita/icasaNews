@@ -20,31 +20,26 @@ export class MyApp {
 
   @ViewChild(Nav) nav;
   rootPage: any = TabsPage;
-  pages: { title: string, component: any }[];
-  menuCtrl: MenuController;
   currentUser:User;
 
   constructor(
     platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
-    menuCtrl: MenuController,
     authService: AuthService,
     userService: UserService
   ) {
 
     authService.auth.authState.subscribe((userAuth:UserAuth)=>{
+      console.log(userAuth);
       if(userAuth) {
-        
+        userService.getUser(userAuth.uid).subscribe((obj:any)=>{
+          this.currentUser = new User(obj.name,obj.email,obj.uid,obj.photo);
+        })
+      }else{
+        this.currentUser = null;
       }
     })
-
-    this.menuCtrl = menuCtrl;
-
-    this.pages = [
-      { title: 'Home', component: TabsPage },
-      { title: 'Login', component: LoginPage }
-    ];
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -54,8 +49,4 @@ export class MyApp {
     });
   }
 
-  openPage(page: any): void {
-    this.rootPage = page.component;
-    this.menuCtrl.close();
-  }
 }

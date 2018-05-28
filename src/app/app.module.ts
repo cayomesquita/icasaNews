@@ -9,6 +9,8 @@ import { StaffPage } from './../pages/staff/staff';
 import { TeamPage } from './../pages/team/team';
 import { NewsPage } from './../pages/news/news';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 
 import { UserInfoComponent } from '../components/user-info/user-info.component';
 import { UserMenuComponent } from '../components/user-menu/user-menu.component';
@@ -37,6 +39,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     TeamPage,
     StaffPage,
     TabsPage,
+    LoginPage,
+    SignupPage,
     UserInfoComponent,
     UserMenuComponent
   ],
@@ -53,7 +57,9 @@ const firebaseAppConfig: FirebaseAppConfig = {
     NewsPage,
     TeamPage,
     StaffPage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    SignupPage
   ],
   providers: [
     StatusBar,

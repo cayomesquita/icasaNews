@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserCredential } from '@firebase/auth-types';
@@ -14,7 +14,6 @@ import { UserService } from './../../providers/firebase/user.service';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',

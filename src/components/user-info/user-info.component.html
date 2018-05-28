@@ -1,8 +1,12 @@
 <!-- Generated template for the UserInfoComponent component -->
-<div>
+<div *ngIf="user; else showNoAuth">
   <ion-avatar>
     <img class="round" [src]="'assets/imgs/no-photo.jpg'">
   </ion-avatar>
-  <h1 text-center *ngIf="user">{{user.name}}</h1>
-  
+  <h2 text-center>{{user.name}}</h2>
 </div>
+<ng-template #showNoAuth>
+  <ion-avatar>
+    <img class="round" [src]="'assets/imgs/no-auth-photo.jpg'">
+  </ion-avatar>
+</ng-template>

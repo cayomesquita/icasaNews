@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+
+import { AuthService } from './../../providers/firebase/auth.service';
+import { AddNewsPage } from './../add-news/add-news';
+
+import { User } from '@firebase/auth-types';
 
 /**
  * Generated class for the NewsPage page.
@@ -8,18 +13,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-news',
   templateUrl: 'news.html',
 })
 export class NewsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  currentUser: User;
+  autenticated: Promise<boolean>;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public authService: AuthService
+  ) {
+    this.authService.user.subscribe((user: User) => {
+      this.currentUser = user;
+    });
+    this.autenticated = this.authService.authenticated;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewsPage');
+  onAddNewsClick() {
+    this.navCtrl.push(AddNewsPage);
   }
 
 }

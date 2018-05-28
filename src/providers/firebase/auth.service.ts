@@ -20,7 +20,7 @@ export class AuthService {
     public auth: AngularFireAuth
   ) {
     this.user = this.auth.authState;
-   }
+  }
 
   createAuthUser(user: { email: string, password: string }): Promise<UserCredential> {
     return this.auth.auth.createUserAndRetrieveDataWithEmailAndPassword(user.email, user.password);
@@ -32,6 +32,14 @@ export class AuthService {
 
   logout(): Promise<any> {
     return this.auth.auth.signOut();
+  }
+
+  get authenticated(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.auth.authState.subscribe((user: User) => {
+        (user) ? resolve(true) : reject(false);
+      });
+    })
   }
 
 }

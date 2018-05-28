@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>Notícias</ion-title>
+    <ion-buttons *ngIf="autenticated" end>
+      <button ion-button icon-only (click)="onAddNewsClick">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

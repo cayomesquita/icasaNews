@@ -7,12 +7,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>addNews</ion-title>
+    <ion-title>Nova notícia</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <form>
+    <ion-item>
+      <ion-label color="primary" stacked>Título</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Resumo</ion-label>
+      <ion-textarea type="text"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>URL</ion-label>
+      <ion-input type="url"></ion-input>
+    </ion-item>
+
+    <button ion-button full>Adicionar</button>
+  </form>
 
 </ion-content>

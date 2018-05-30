@@ -5,12 +5,13 @@ import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { StaffPage } from './../pages/staff/staff';
-import { TeamPage } from './../pages/team/team';
-import { NewsPage } from './../pages/news/news';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { NewsPage } from './../pages/news/news';
+import { AddNewsPage } from './../pages/add-news/add-news';
+import { StaffPage } from './../pages/staff/staff';
+import { TeamPage } from './../pages/team/team';
 
 import { UserInfoComponent } from '../components/user-info/user-info.component';
 import { UserMenuComponent } from '../components/user-menu/user-menu.component';
@@ -41,6 +42,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     TabsPage,
     LoginPage,
     SignupPage,
+    AddNewsPage,
     UserInfoComponent,
     UserMenuComponent
   ],
@@ -59,7 +61,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     StaffPage,
     TabsPage,
     LoginPage,
-    SignupPage
+    SignupPage,
+    AddNewsPage
   ],
   providers: [
     StatusBar,

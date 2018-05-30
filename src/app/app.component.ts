@@ -1,15 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, MenuController } from 'ionic-angular';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { User as UserAuth} from '@firebase/auth-types';
 
 import { AuthService } from './../providers/firebase/auth.service';
 import { UserService } from './../providers/firebase/user.service';
 
+import { User as UserAuth} from '@firebase/auth-types';
+
 import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
 
 import { User } from './../models/user.model';
 
@@ -34,7 +33,7 @@ export class MyApp {
       console.log(userAuth);
       if(userAuth) {
         userService.getUser(userAuth.uid).subscribe((obj:any)=>{
-          this.currentUser = new User(obj.name,obj.email,obj.uid,obj.photo);
+          this.currentUser = new User(obj.name,obj.email,obj.photo);
         })
       }else{
         this.currentUser = null;

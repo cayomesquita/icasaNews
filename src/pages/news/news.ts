@@ -1,10 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from './../../providers/firebase/auth.service';
-import { AddNewsPage } from './../add-news/add-news';
 
-import { User } from '@firebase/auth-types';
+import { AddNewsPage } from './../add-news/add-news';
 
 /**
  * Generated class for the NewsPage page.
@@ -19,18 +19,14 @@ import { User } from '@firebase/auth-types';
 })
 export class NewsPage {
 
-  currentUser: User;
-  autenticated: Promise<boolean>;
+  autenticated: Observable<boolean>;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public authService: AuthService
   ) {
-    this.authService.user.subscribe((user: User) => {
-      this.currentUser = user;
-    });
-    this.autenticated = this.authService.authenticated;
+    this.autenticated = this.authService.authenticated
   }
 
   onAddNewsClick() {

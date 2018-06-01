@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { UserCredential } from '@firebase/auth-types';
-
 import { AuthService } from './../../providers/firebase/auth.service';
 import { UserService } from './../../providers/firebase/user.service';
+
+import { UserCredential } from '@firebase/auth-types';
 
 /**
  * Generated class for the SignupPage page.

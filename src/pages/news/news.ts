@@ -2,9 +2,9 @@ import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { AuthService } from './../../providers/firebase/auth.service';
-
 import { AddNewsPage } from './../add-news/add-news';
+
+import { AuthService } from './../../providers/firebase/auth.service';
 
 /**
  * Generated class for the NewsPage page.

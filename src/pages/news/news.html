@@ -19,11 +19,10 @@
 
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let item of news | async">
     <ion-card-content>
-      <ion-card-header>Header</ion-card-header>
-      <ion-card-title>Título do artigo</ion-card-title>
-      <p>Primeiros 150 caracteres do texto do artigo.</p>
+      <ion-card-title>{{item.title}}</ion-card-title>
+      <p>{{item.abstract}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

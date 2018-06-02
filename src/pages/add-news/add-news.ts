@@ -1,10 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
 
 import { NewsService } from './../../providers/firebase/news.provider';
-
-import { News } from '../../models/news.model';
 
 /**
  * Generated class for the AddNewsPage page.
@@ -19,20 +17,22 @@ import { News } from '../../models/news.model';
 })
 
 export class AddNewsPage {
-  
-  addNewsForm : FormGroup;
-  
+
+  addNewsForm: FormGroup;
+
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public newsService: NewsService
+    public newsService: NewsService,
+    public loadingCtrl: LoadingController,
+    public alert: AlertController
   ) {
     let urlRE = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/ig;
     this.addNewsForm = this.formBuilder.group({
-      title:['',[Validators.required, Validators.minLength(3)]],
-      abstract:['',[Validators.required, Validators.minLength(30), Validators.maxLength(150)]],
-      url:['',[Validators.required, Validators.pattern(urlRE)]]
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      abstract: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(150)]],
+      url: ['', [Validators.required, Validators.pattern(urlRE)]]
     });
   }
 
@@ -40,10 +40,24 @@ export class AddNewsPage {
     console.log('ionViewDidLoad AddNewsPage');
   }
 
-  onSubmit(){
-    var value :any = this.addNewsForm.value;
+  onSubmit() {
+    var loading: Loading = this.loadingCtrl.create({ content: 'Adicionando notícia...' });
+    var value: any = this.addNewsForm.value;
     value.date = new Date();
-    this.newsService.addNews(value);
+    this.newsService.addNews(value)
+      .then(()=>{
+        loading.dismiss();
+        this.addNewsForm.reset();
+      })
+      .catch(err=>{
+        loading.dismiss();
+        this.alert.create({
+            title:'Alerta',
+            message:'Erro ao adicionar nova notícia!',
+            buttons:['OK']
+        }).present();
+
+      });
   }
 
 }

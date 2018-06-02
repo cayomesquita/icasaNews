@@ -1,10 +1,11 @@
-import { News } from './../../models/news.model';
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 
-import { AngularFireDatabase } from 'angularfire2/database';
-import { ThenableReference } from '@firebase/database-types';
+import { AngularFireDatabase} from 'angularfire2/database';
+
+import { News } from './../../models/news.model';
 
 /*
   Generated class for the FirebaseProvider provider.
@@ -20,10 +21,14 @@ export class NewsService {
   ) {
   }
 
-  addNews(news: News): ThenableReference{
+  addNews(news: News): Promise<any>{
     delete news.uid;
-    return this.af.list('/news/').push(news);
+    var ref = this.af.database.ref().child('news').push();
+    return ref.update(news);
   }
 
+  getNews():Observable<any>{
+    return this.af.list('/news/').valueChanges();
+  }
 
 }

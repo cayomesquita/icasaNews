@@ -24,6 +24,7 @@ import { MyApp } from './app.component';
 import { UserService } from '../providers/firebase/user.service';
 import { AuthService } from '../providers/firebase/auth.service';
 import { NewsService } from '../providers/firebase/news.provider';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 const firebaseAppConfig: FirebaseAppConfig = {
   apiKey: "AIzaSyCyS3HDFMUmIT8p5o0zUji9jruffH-mbyQ",
@@ -71,7 +72,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserService,
     AuthService,
-    NewsService
+    NewsService,
+    InAppBrowser
   ]
 })
 export class AppModule {

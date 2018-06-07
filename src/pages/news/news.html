@@ -19,7 +19,7 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let item of news | async">
+  <ion-card *ngFor="let item of news | async" (click)="onNewsClick(item.url)">
     <ion-card-content>
       <ion-card-title>{{item.title}}</ion-card-title>
       <p>{{item.abstract}}</p>

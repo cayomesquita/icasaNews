@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 import { AddNewsPage } from './../add-news/add-news';
 
@@ -30,7 +31,8 @@ export class NewsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public authService: AuthService,
-    public newsService: NewsService
+    public newsService: NewsService,
+    public inAppBrowser: InAppBrowser
   ) {
     this.autenticated = this.authService.authenticated
     this.news = this.newsService.getNews();
@@ -38,6 +40,10 @@ export class NewsPage {
 
   onAddNewsClick() {
     this.navCtrl.push(AddNewsPage);
+  }
+
+  onNewsClick(url:string) {
+    this.inAppBrowser.create(url);
   }
 
 }

@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <ion-title>Notícias</ion-title>
-    <ion-buttons *ngIf="autenticated | async" end>
+    <ion-buttons *ngIf="authenticated | async" end>
       <button ion-button icon-only (click)="onAddNewsClick()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
@@ -19,8 +19,15 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let item of news | async" (click)="onNewsClick(item.url)">
-    <ion-card-content>
+  <ion-card *ngFor="let item of news | async">
+    <ion-card-header>
+      <ion-item>
+        <ion-icon item-left name="image"></ion-icon>
+        <ion-note item-left>5 horas atrás</ion-note>
+        <ion-icon item-right name="more" *ngIf="authenticated | async"></ion-icon>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content (click)="onNewsClick(item.url)">
       <ion-card-title>{{item.title}}</ion-card-title>
       <p>{{item.abstract}}</p>
     </ion-card-content>

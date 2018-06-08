@@ -25,7 +25,7 @@ export class NewsPage {
 
   news: Observable<News>;
 
-  autenticated: Observable<boolean>;
+  authenticated: Observable<boolean>;
 
   constructor(
     public navCtrl: NavController,
@@ -34,7 +34,7 @@ export class NewsPage {
     public newsService: NewsService,
     public inAppBrowser: InAppBrowser
   ) {
-    this.autenticated = this.authService.authenticated
+    this.authenticated = this.authService.authenticated
     this.news = this.newsService.getNews();
   }
 

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 
-import { AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { News } from './../../models/news.model';
 
@@ -21,14 +21,21 @@ export class NewsService {
   ) {
   }
 
-  addNews(news: News): Promise<any>{
+  addNews(news: News): Promise<any> {
     delete news.uid;
     var ref = this.af.database.ref().child('news').push();
     return ref.update(news);
   }
 
-  getNews():Observable<any>{
-    return this.af.list('/news/').valueChanges();
+  getNews(): Observable<any> {
+    //return this.af.list('/news/').valueChanges();
+    return this.af.list('/news/').snapshotChanges()
+      .map(changes =>
+        (changes.map(c => ({ uid:c.payload.key, ...c.payload.val() }))));
+  }
+
+  removeNews(news: News): Promise<any> {
+    return this.af.object(`/news/${news.uid}`).remove();
   }
 
 }

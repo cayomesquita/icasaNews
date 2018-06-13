@@ -1,6 +1,7 @@
+import { PageBase } from './../page.base';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 import { AddNewsPage } from './../add-news/add-news';
@@ -21,7 +22,7 @@ import { News } from './../../models/news.model';
   selector: 'page-news',
   templateUrl: 'news.html',
 })
-export class NewsPage {
+export class NewsPage extends PageBase {
 
   news: Observable<News>;
 
@@ -32,8 +33,11 @@ export class NewsPage {
     public navParams: NavParams,
     public authService: AuthService,
     public newsService: NewsService,
-    public inAppBrowser: InAppBrowser
+    public inAppBrowser: InAppBrowser,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController
   ) {
+    super(loadingCtrl, alertCtrl);
     this.authenticated = this.authService.authenticated
     this.news = this.newsService.getNews();
   }
@@ -42,8 +46,21 @@ export class NewsPage {
     this.navCtrl.push(AddNewsPage);
   }
 
-  onNewsClick(url:string) {
+  onNewsClick(url: string) {
     this.inAppBrowser.create(url);
   }
 
+  onCardTrashClick(news: News) {
+    var loading: Loading = this.showloading('Removendo...');
+    this.newsService.removeNews(news)
+      .then(() => {
+        loading.dismiss();
+        this.showAlertInfo(PageBase.ALERT_TITLE_SUCESS,'Notícia removida');
+
+      })
+      .catch(() => {
+        loading.dismiss();
+        this.showAlertInfo(PageBase.ALERT_TITLE_FAIL,'Falha na remoção da notícia!');
+      });
+  }
 }

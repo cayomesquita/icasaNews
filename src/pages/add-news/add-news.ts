@@ -1,3 +1,4 @@
+import { PageBase } from './../page.base';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
@@ -16,7 +17,7 @@ import { NewsService } from './../../providers/firebase/news.provider';
   templateUrl: 'add-news.html',
 })
 
-export class AddNewsPage {
+export class AddNewsPage extends PageBase{
 
   addNewsForm: FormGroup;
 
@@ -26,9 +27,10 @@ export class AddNewsPage {
     public formBuilder: FormBuilder,
     public newsService: NewsService,
     public loadingCtrl: LoadingController,
-    public alert: AlertController
+    public alertCtrl: AlertController
   ) {
-    let urlRE = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/ig;
+    super(loadingCtrl,alertCtrl)
+    let urlRE = /^http(s)?:\/\/[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$/ig;
     this.addNewsForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       abstract: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(150)]],
@@ -47,11 +49,11 @@ export class AddNewsPage {
     this.newsService.addNews(value)
       .then(()=>{
         loading.dismiss();
-        this.addNewsForm.reset();
+        this.navCtrl.pop();
       })
       .catch(err=>{
         loading.dismiss();
-        this.alert.create({
+        this.alertCtrl.create({
             title:'Alerta',
             message:'Erro ao adicionar nova notícia!',
             buttons:['OK']

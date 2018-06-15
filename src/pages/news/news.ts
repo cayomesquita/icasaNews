@@ -1,7 +1,7 @@
-import { PageBase } from './../page.base';
+import { BaseComponent } from '../../components/base.component';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, Loading, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 import { AddNewsPage } from './../add-news/add-news';
@@ -22,7 +22,7 @@ import { News } from './../../models/news.model';
   selector: 'page-news',
   templateUrl: 'news.html',
 })
-export class NewsPage extends PageBase {
+export class NewsPage extends BaseComponent {
 
   news: Observable<News>;
 
@@ -45,22 +45,5 @@ export class NewsPage extends PageBase {
   onAddNewsClick() {
     this.navCtrl.push(AddNewsPage);
   }
-
-  onNewsClick(url: string) {
-    this.inAppBrowser.create(url);
-  }
-
-  onCardTrashClick(news: News) {
-    var loading: Loading = this.showloading('Removendo...');
-    this.newsService.removeNews(news)
-      .then(() => {
-        loading.dismiss();
-        this.showAlertInfo(PageBase.ALERT_TITLE_SUCESS,'Notícia removida');
-
-      })
-      .catch(() => {
-        loading.dismiss();
-        this.showAlertInfo(PageBase.ALERT_TITLE_FAIL,'Falha na remoção da notícia!');
-      });
-  }
+  
 }

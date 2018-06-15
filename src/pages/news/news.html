@@ -19,7 +19,8 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let item of news | async">
+  <news-card *ngFor="let item of news | async" [news]="item"></news-card>
+  <!-- <ion-card *ngFor="let item of news | async">
     <ion-card-header>
       <ion-fab right *ngIf="authenticated | async">
           <button ion-fab mini color="light"><ion-icon name="more"></ion-icon></button>
@@ -37,5 +38,5 @@
       <ion-card-title>{{item.title}}</ion-card-title>
       <p>{{item.abstract}}</p>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

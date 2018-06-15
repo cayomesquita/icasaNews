@@ -1,13 +1,13 @@
 import { LoadingController, Loading, AlertController, Alert } from 'ionic-angular';
 
-export class PageBase {
+export class BaseComponent {
 
   static readonly ALERT_TITLE_SUCESS:string="Sucesso";
   static readonly ALERT_TITLE_FAIL:string="Falha";
 
   constructor(
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController
+    protected loadingCtrl: LoadingController,
+    protected alertCtrl: AlertController
   ) {
   }
 

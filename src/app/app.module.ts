@@ -15,6 +15,7 @@ import { TeamPage } from './../pages/team/team';
 
 import { UserInfoComponent } from '../components/user-info/user-info.component';
 import { UserMenuComponent } from '../components/user-menu/user-menu.component';
+import { NewsCardComponent } from '../components/news-card/news-card.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -46,7 +47,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     SignupPage,
     AddNewsPage,
     UserInfoComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    NewsCardComponent
   ],
   imports: [
     BrowserModule,

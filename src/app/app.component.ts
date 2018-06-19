@@ -30,7 +30,6 @@ export class MyApp {
   ) {
 
     authService.auth.authState.subscribe((userAuth:UserAuth)=>{
-      console.log(userAuth);
       if(userAuth) {
         userService.getUser(userAuth.uid).subscribe((obj:any)=>{
           this.currentUser = new User(obj.name,obj.email,obj.photo);

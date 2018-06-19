@@ -28,7 +28,6 @@ export class UserMenuComponent {
     public loadingCtrl: LoadingController,
     public authService: AuthService
   ) {
-    console.log('Hello UserMenuComponent Component');
   }
 
   onLogout(): void {

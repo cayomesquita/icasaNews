@@ -18,7 +18,7 @@ import { News } from './../../models/news.model';
  */
 @Component({
   selector: 'news-card',
-  templateUrl: 'news-card.component.html'
+  templateUrl: 'news-card.component.html',
 })
 
 export class NewsCardComponent extends BaseComponent {

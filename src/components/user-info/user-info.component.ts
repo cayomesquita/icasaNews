@@ -17,7 +17,6 @@ export class UserInfoComponent {
   @Input() user: User;
 
   constructor() {
-    console.log('Hello UserInfoComponent Component');    
   }
 
 }

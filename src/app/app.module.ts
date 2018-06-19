@@ -20,6 +20,8 @@ import { NewsCardComponent } from '../components/news-card/news-card.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { PipesModule } from './../pipes/pipes.module';
+
 import { MyApp } from './app.component';
 
 import { UserService } from '../providers/firebase/user.service';
@@ -55,7 +57,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseAppConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

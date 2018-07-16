@@ -3,10 +3,11 @@
   <user-info [user]="currentUser"></user-info>
 
   <div *ngIf="currentUser; else showLogin">
-    <button ion-button block (click)="onLogout()">Logout</button>
+      <button ion-button block (click)="onClickProfile()">Profile</button>
+      <button ion-button block (click)="onClickLogout()">Logout</button>
   </div>
   <ng-template #showLogin>
-    <button ion-button block (click)="onLogin()">Login</button>
+    <button ion-button block (click)="onClickLogin()">Login</button>
   </ng-template>
 
 </ion-content>

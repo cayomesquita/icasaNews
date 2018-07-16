@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { ProfilePage } from '../pages/profile/profile';
 import { NewsPage } from './../pages/news/news';
 import { AddNewsPage } from './../pages/add-news/add-news';
 import { StaffPage } from './../pages/staff/staff';
@@ -48,6 +49,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     LoginPage,
     SignupPage,
     AddNewsPage,
+    ProfilePage,
     UserInfoComponent,
     UserMenuComponent,
     NewsCardComponent
@@ -69,7 +71,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     TabsPage,
     LoginPage,
     SignupPage,
-    AddNewsPage
+    AddNewsPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

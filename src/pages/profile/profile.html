@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding="true">
+
+  <ion-avatar>
+    <img class="round" [src]="'assets/imgs/no-photo.jpg'">
+  </ion-avatar>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+    <ion-item>
+      <ion-icon name="person" item-left></ion-icon>
+      <ion-input type="text" placeholder="Username" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" item-left></ion-icon>
+      <ion-input type="text" placeholder="E-mail" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock" item-left></ion-icon>
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+    </ion-item>
+    <br>
+    <button ion-button full type="submit" [disabled]="profileForm.invalid">Salvar</button>
+  </form>
+</ion-content>

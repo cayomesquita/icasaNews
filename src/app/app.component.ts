@@ -1,12 +1,8 @@
+import { SessionProvider } from './../providers/session/session';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { AuthService } from './../providers/firebase/auth.service';
-import { UserService } from './../providers/firebase/user.service';
-
-import { User as UserAuth} from '@firebase/auth-types';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -19,24 +15,17 @@ export class MyApp {
 
   @ViewChild(Nav) nav;
   rootPage: any = TabsPage;
-  currentUser:User;
+  currentUser: User;
 
   constructor(
-    platform: Platform, 
-    statusBar: StatusBar, 
+    platform: Platform,
+    statusBar: StatusBar,
     splashScreen: SplashScreen,
-    authService: AuthService,
-    userService: UserService
+    session: SessionProvider
   ) {
 
-    authService.auth.authState.subscribe((userAuth:UserAuth)=>{
-      if(userAuth) {
-        userService.getUser(userAuth.uid).subscribe((obj:any)=>{
-          this.currentUser = new User(obj.name,obj.email,obj.photo);
-        })
-      }else{
-        this.currentUser = null;
-      }
+    session.currentUser.subscribe(user => {
+      this.currentUser = user;
     })
 
     platform.ready().then(() => {

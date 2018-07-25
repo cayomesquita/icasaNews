@@ -28,6 +28,7 @@ import { MyApp } from './app.component';
 import { UserService } from '../providers/firebase/user.service';
 import { AuthService } from '../providers/firebase/auth.service';
 import { NewsService } from '../providers/firebase/news.provider';
+import { SessionProvider } from '../providers/session/session';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 const firebaseAppConfig: FirebaseAppConfig = {
@@ -81,6 +82,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     UserService,
     AuthService,
     NewsService,
+    SessionProvider,
     InAppBrowser
   ]
 })

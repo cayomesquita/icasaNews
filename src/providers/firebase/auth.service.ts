@@ -38,4 +38,11 @@ export class AuthService {
     });
   }
 
+  get uidAuth():string{
+    this.auth.authState.subscribe((userAuth) => {
+      return userAuth.uid;
+    });
+    return null;
+  }
+
 }

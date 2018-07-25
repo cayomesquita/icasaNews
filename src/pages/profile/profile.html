@@ -15,11 +15,11 @@
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     <ion-item>
       <ion-icon name="person" item-left></ion-icon>
-      <ion-input type="text" placeholder="Username" formControlName="name"></ion-input>
+      <ion-input type="text" value="{{profile?.name}}" placeholder="Username" formControlName="name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="mail" item-left></ion-icon>
-      <ion-input type="text" placeholder="E-mail" formControlName="email"></ion-input>
+      <ion-input type="text" value="{{profile?.email}}" placeholder="E-mail" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="lock" item-left></ion-icon>

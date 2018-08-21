@@ -14,8 +14,8 @@ export class UserService {
   ) {
   }
 
-  create(uid: string, user: User): Promise<any> {
-    return this.af.object(`/users/${uid}`).set(user);
+  create(user: User): Promise<any> {
+    return this.af.object(`/users/${user.uid}`).set(user);
   }
 
   getUser(uid: string): Observable<any> {

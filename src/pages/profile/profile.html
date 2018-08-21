@@ -8,9 +8,7 @@
 
 <ion-content padding="true">
 
-  <ion-avatar>
-    <img class="round" [src]="'assets/imgs/no-photo.jpg'">
-  </ion-avatar>
+  <avatar-updater id="avatarProfile" [uri]="profile?.photo"></avatar-updater>
 
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
     <ion-item>

@@ -23,7 +23,7 @@ export class SessionProvider {
       this.authService.auth.authState.subscribe((userAuth) => {
         if(userAuth) {
           this.userService.getUser(userAuth.uid).subscribe((obj:any)=>{
-            observer.next(new User(obj.name,obj.email,obj.photo));
+            observer.next(new User(obj.uid, obj.name,obj.email,obj.photo));
           })
         }else{
           observer.next(null);

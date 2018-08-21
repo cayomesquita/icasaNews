@@ -51,7 +51,7 @@ export class SignupPage {
         delete formUser.password;
 
         formUser.uid = userCred.user.uid;
-        this.userService.create(formUser.uid, formUser)
+        this.userService.create(formUser)
           .then(() => {
             console.log('Usuario cadastrado');
             loading.dismiss();

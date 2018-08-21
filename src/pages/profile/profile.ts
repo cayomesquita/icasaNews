@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { SessionProvider } from './../../providers/session/session';
 
@@ -12,15 +11,12 @@ import { User } from './../../models/user.model';
 })
 export class ProfilePage {
 
-  private profileForm:FormGroup;
-  profile : User
+  private profileForm: FormGroup;
+  profile: User;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public loadingCtrl: LoadingController,
-    public session: SessionProvider  
+    public session: SessionProvider
   ) {
     let emailRegex = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
@@ -29,13 +25,14 @@ export class ProfilePage {
       email: ['', [Validators.required, Validators.pattern(emailRegex)]],
       password: ['', [Validators.required, Validators.minLength(3)]]
     });
-    this.session.currentUser.subscribe( user =>{
+    this.session.currentUser.subscribe(user => {
       this.profile = user;
     });
   }
 
   onSubmit() {
-    console.log(`Submitted ${this.profileForm.value}`);
+    let profileAux : User = this.profileForm.value;
+    console.log(`Submitted ${profileAux}`);
   }
 
 }

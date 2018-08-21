@@ -1,9 +1,14 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import { AngularFireModule, FirebaseAppConfig } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -14,22 +19,19 @@ import { AddNewsPage } from './../pages/add-news/add-news';
 import { StaffPage } from './../pages/staff/staff';
 import { TeamPage } from './../pages/team/team';
 
+import { MyApp } from './app.component';
+
 import { UserInfoComponent } from '../components/user-info/user-info.component';
 import { UserMenuComponent } from '../components/user-menu/user-menu.component';
 import { NewsCardComponent } from '../components/news-card/news-card.component';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { AvatarUpdaterComponent } from './../components/avatar-updater/avatar-updater';
 
 import { PipesModule } from './../pipes/pipes.module';
-
-import { MyApp } from './app.component';
 
 import { UserService } from '../providers/firebase/user.service';
 import { AuthService } from '../providers/firebase/auth.service';
 import { NewsService } from '../providers/firebase/news.provider';
 import { SessionProvider } from '../providers/session/session';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 const firebaseAppConfig: FirebaseAppConfig = {
   apiKey: "AIzaSyCyS3HDFMUmIT8p5o0zUji9jruffH-mbyQ",
@@ -53,7 +55,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     ProfilePage,
     UserInfoComponent,
     UserMenuComponent,
-    NewsCardComponent
+    NewsCardComponent,
+    AvatarUpdaterComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,9 @@ const firebaseAppConfig: FirebaseAppConfig = {
     AuthService,
     NewsService,
     SessionProvider,
-    InAppBrowser
+    InAppBrowser,
+    Camera,
+    File
   ]
 })
 export class AppModule {
